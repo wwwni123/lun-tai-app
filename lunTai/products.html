@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="products.css"/>
+		<link rel="stylesheet" type="text/css" href="NEW-API/bootstrap/css/bootstrap.min.css"/>
+		<script src="NEW-API/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="logo">
+			<div class="nav">
+				<a href="#">LOGO</a>
+				<a href="#">HOME</a>
+				<a href="products.html">PRODUCTS</a>
+				<a href="#">ABOUT US</a>
+				<a href="#">CONTACT</a>
+				<a href="#">REGISTER I SING IN</a>
+			</div>
+		</div>
+		<div class="banner">
+			<img src="产品介绍/首页-产品介绍_02.jpg" alt="" />
+		</div>
+		<div class="nav-foot">
+			<p>Your location: Home > <span>Products > LM110</span></p>
+		</div>
+		<div class="con-fluid">
+			<div class="con-article">
+				<!--按钮组-->
+				<div class="obtn">
+					<input class="btn btn-default" type="button" value="More">
+					<input class="btn btn-default" type="button" value="Tyres">
+					<input class="btn btn-default" type="button" value="Tyre Equipment">
+					<input class="btn btn-default" type="button" value="Searchshere">
+				</div>
+				<!--图片-->
+				<div class="container-fluid con-itme">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="imgs">
+								<span>+</span>
+								<img src="产品详情页/图层6副本.png"/>
+							</div>
+							<p>LM110<img src="产品介绍/矢量智能对象.png"/></p>
+						</div>
+						<div class="col-md-4">
+							<div class="imgs">
+								<span>+</span>
+								<img src="产品详情页/图层6副本.png"/>
+							</div>
+							<p>LM115<img src="产品介绍/矢量智能对象.png"/></p>
+						</div>
+						<div class="col-md-4">
+							<div class="imgs">
+								<span>+</span>
+								<img src="产品详情页/图层6副本.png"/>
+							</div>
+							<p>LM114<img src="产品介绍/矢量智能对象.png"/></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="imgs">
+								<span>+</span>
+								<img src="产品详情页/图层6副本.png"/>
+							</div>
+							<p>LM113<img src="产品介绍/矢量智能对象.png"/></p>
+						</div>
+						<div class="col-md-4">
+							<div class="imgs">
+								<span>+</span>
+								<img src="产品详情页/图层6副本.png"/>
+							</div>
+							<p>LM112<img src="产品介绍/矢量智能对象.png"/></p>
+						</div>
+						<div class="col-md-4">
+							<div class="imgs">
+								<span>+</span>
+								<img src="产品详情页/图层6副本.png"/>
+							</div>
+							<p>LM116<img src="产品介绍/矢量智能对象.png"/></p>
+						</div>
+					</div>
+					<!--按钮组-->
+					<div class="obtn1">
+						<input class="btn btn-default" type="button" value="-">
+						<input class="btn btn-default" type="button" value="1">
+						<input class="btn btn-default" type="button" value="2">
+						<input class="btn btn-default" type="button" value="3">
+						<input class="btn btn-default" type="button" value="+">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<span>SpiderGT Longmarch Type 2017.All Rights Reserved</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		console.log("1rem=" + 1920 / 16)
+		onresize = function() {
+			document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		}
+		$(".con-itme .col-md-4").on("click",function(){
+			console.log($(this).find("p").text())
+			localStorage.setItem("model_number",$(this).find("p").text())
+			location.replace("cook1.html")
+		})
+	</script>
+</html>

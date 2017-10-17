@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>register an account</title>
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<meta name="viewport" content="width=device-width" />
+		<link href="NEW-API/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="注册/assets/css/paper-dashboard.css" rel="stylesheet" />
+		<link href="注册/assets/css/demo.css" rel="stylesheet" />
+		<link href="注册/assets/css/themify-icons.css" rel="stylesheet">
+		<script src="NEW-API/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="NEW-API/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="sidebar" data-background-color="white" data-active-color="danger">
+				<div class="sidebar-wrapper">
+					<div class="logo">
+						<a href="#" class="simple-text">
+							Car Tyre
+						</a>
+					</div>
+					<ul class="nav">
+						<li class="active">
+							<a href="user.html">
+								<i class="ti-user"></i>
+								<p>Login page</p>
+							</a>
+						</li>
+						<li>
+							<a href="table.html">
+								<i class="ti-view-list-alt"></i>
+								<p>Details page</p>
+							</a>
+						</li>
+						<li>
+							<a href="option.html">
+								<i class="ti-view-list-alt"></i>
+								<p>Option page</p>
+							</a>
+						</li>
+						<li>
+							<a href="slides.html">
+								<i class="ti-view-list-alt"></i>
+								<p>Option page</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="main-panel">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+							<a class="navbar-brand" href="#">Register an account</a>
+						</div>
+						<div class="collapse navbar-collapse">
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="ti-panel"></i>
+										<p>Stats</p>
+									</a>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="ti-bell"></i>
+										<p class="notification">5</p>
+										<p>Notifications</p>
+										<b class="caret"></b>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="ti-settings"></i>
+										<p>Settings</p>
+									</a>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+				</nav>
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-3 col-md-3"></div>
+							<div class="col-lg-6 col-md-6">
+								<div class="card">
+									<div class="header">
+										<h4 class="title">Register an account</h4>
+									</div>
+									<div class="content">
+										<form>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label>Username</label>
+														<input type="text" class="form-control border-input user" placeholder="Username" value="">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="exampleInputEmail1">PASS WORD</label>
+														<input type="password" class="form-control border-input pass" placeholder="PASS WORD">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="exampleInputEmail1">Confirm password</label>
+														<input type="password" class="form-control border-input confirm" placeholder="Confirm password">
+													</div>
+												</div>
+											</div>
+
+											<div class="text-center">
+												<button type="button" class="btn btn-info btn-fill btn-wd">Began to register</button>
+												<div style="margin-top: 0.5rem;display: none;" id="collapseExample">
+													<div class="well">
+														<big style="color: orangered;">输入不可为空 !</big>
+													</div>
+												</div>
+											</div>
+											<div class="clearfix"></div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(document).on("click",function(){
+			$("#collapseExample").slideUp()
+		})
+//		var ex=/^[1][0-9]{10}$/
+//		var exmil=/^\w+\@(\w)+(.\w)+$/
+		var exname=/^[1][0-9]{10}$/
+		var emil=/^\w+\@\w+\.\w+$/
+		var expass=/^\w{3,}$/
+		$(".user").on("keyup",function(){
+			if (exname.test($(".user").val())||emil.test($(".user").val())) {
+				$(this).siblings("label").css("color","greenyellow")
+			}else{
+				$(this).siblings("label").css("color","red")
+			}
+		})
+		$(".pass").on("keyup",function(){
+			if (expass.test($(".pass").val())) {
+				$(this).siblings("label").css("color","greenyellow")
+			}else{
+				$(this).siblings("label").css("color","red")
+			}
+		})
+		$(".confirm").on("keyup",function(){
+			if ($(".pass").val()==$(".confirm").val()) {
+				$(this).siblings("label").css("color","greenyellow")
+			}else{
+				$(this).siblings("label").css("color","red")
+			}
+		})
+		$(".btn-wd").on("click", function() {
+			if(!(!exname.test($(".user").val())|| !emil.test($(".user").val())) || !expass.test($(".pass").val()) || $(".pass").val()!=$(".confirm").val()) {
+					$("#collapseExample").slideDown()
+					debugger
+					$(".well big").html("请认真填写 !")
+					$(".user").val("")
+					$(".pass").val("")
+					$(".confirm").val("")
+			}else{
+				$.ajax({
+				type: "post",
+				url: "http://47.92.37.168/luntai/php/index.php?C=Login&M=sign",
+				async: true,
+				data: {
+					username: $(".user").val(),
+					password: $(".pass").val()
+				},
+				success: function(con) {
+					var data=$.parseJSON(con)
+					console.log(data)
+					
+					if (data.code==200) {
+//						debugger
+						$("#collapseExample").slideDown()
+						$(".well big").html(data.message)
+//						window.location.replace("./home.html")
+					}else{
+						$("#collapseExample").slideDown()
+						$(".well big").html(data.message)
+						$(".user").val("")
+						$(".pass").val("")
+						$(".confirm").val("")
+					}
+				}
+			});
+			}
+			return false;
+		})
+	</script>
+
+</html>

@@ -1,0 +1,200 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+.logo{
+    width: 100%;
+    height: 0.65rem;
+    background: #1c1c1e;
+    .nav{
+        width:65%;
+        height: 0.65rem;
+        margin: 0 auto;
+        a{
+            width: 1.1rem;
+            height: 0.65rem;
+            float: left;
+            font-size: 0.1rem;
+            text-align: center;
+            line-height: 0.65rem;
+            color: #727271;
+            &:hover{
+                color: #cba303;
+                border-bottom: 0.05rem solid #cba303;
+            }
+        }
+        a:nth-child(1){
+            color: #cba303;
+            margin:0 0.54rem;
+        }
+        a:nth-child(6){
+            width: 3rem;
+            margin-left: 0.54rem;
+        }
+    }
+}
+.nav-foot{
+    width: 100%;
+    height: 0.4rem;
+    background: #3c3a3b;
+    p{
+        width: 100%;
+        padding: 0 2.2rem;
+        height: 0.4rem;
+        line-height: 0.4rem;
+        font-size: 0.1rem;
+        text-align: right;
+        color: #545351;
+        span{
+            color: #cba303;
+        }
+    }
+}
+.con-wrapper{
+    width: 100%;
+    .con-article{
+        width: 70%;
+        height: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        .con-head{
+            width: 100%;
+            height: 4.2rem;
+            margin-top: 0.41rem;
+            .left{
+                position: relative;
+                width:4rem;
+                height: 3.8rem;
+                text-align: center;
+                background: #8c8c8c;
+                float: left;
+                line-height: 3.8rem;
+                >img{
+                    width: 45%;
+                }
+                span{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 38px;
+                    height: 38px;
+                    text-align: center;
+                    line-height: 38px;
+                    background: #ffffff;
+                    opacity: 0.5;
+                }
+            }
+            .right{
+                width: 45%;
+                float: left;
+                margin-left: 0.98rem;
+                p{
+                    img{
+                        width: 100%;
+                    }
+                }
+                .btn-group{
+                    input{
+                        width: 0.6rem;
+                    }
+                }
+                .obtn{
+                    margin-top: 0.1rem;
+                    button{
+                        width: 126px;
+                        height: 36px;
+                        padding: 0;
+                    }
+                    .btn-default{
+                        border: 1px solid #ed5565;
+                        color: #ed5565;
+                    }
+                }
+            }
+        }
+        //导航
+        .con-nav{
+            width: 100%;
+            height: 0.48rem;
+            background: #ffdc4e;
+            line-height: 0.48rem;
+            a{
+                float: left;
+                width: 1.18rem;
+                height: 0.48rem;
+                text-align: center;
+                text-decoration: none;
+                &:hover{
+                    background: #eac948;
+                }
+            }
+        }
+        .con-nav-foot{
+            width: 100%;
+            height: 0.26rem;
+            background: #a4aeb8;
+            a{
+                float: left;
+                height: 0.26rem;
+                padding: 0 0.3rem;
+                line-height: 0.26rem;
+            }
+            a:nth-child(6){
+                padding: 0 0.8rem;
+                float: right;
+            }
+        }
+        .foot-alert{
+            span{
+                padding: 0 0.5rem;
+            }
+        }
+        .nav-footer{
+            text-align: center;
+            margin-top: 0.2rem;
+            .col-md-3{
+                margin-right: 0.4rem;
+                padding: 0;
+                p:nth-child(1){
+                    padding: 0.2rem 0;
+                    background: #3c3a3b;
+                }
+                img{
+                    height:2rem;
+                }
+                h4{
+                    text-align: left;
+                    padding-left: 0.2rem;
+                }
+            }
+        }
+    }
+}
+.footer{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 0.8rem;
+    background:#3c3a3b ;
+    line-height: 0.8rem;
+    color: #55555;
+    margin-top: 0.5rem;
+}
+.gouwu{
+    width: 0.5rem;
+    height: 0.5rem;
+    display: inline-block;
+    background: #ffdc4e;
+    text-align: center;
+    line-height: 0.5rem;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 0.9rem;
+    right: 1.8rem;
+}

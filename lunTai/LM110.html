@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="LM110.css"/>
+		<link rel="stylesheet" type="text/css" href="NEW-API/Font/demo-files/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="NEW-API/bootstrap/css/bootstrap.min.css"/>
+		<script src="NEW-API/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css"> 
+			a:hover{
+				text-decoration: none;
+			}
+			textarea{
+				resize: none;
+			}
+			tbody tr td{
+				line-height: 0.4rem !important;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				if (localStorage.getItem("hasuser")) {
+					$(".nav a:nth-child(6)").html("<span class='glyphicon glyphicon-user'></span>")
+				}
+				$(".nav a:last-child").click(function(){
+					localStorage.clear()
+					location.replace("../login.html")
+				})
+				var arr=$.parseJSON(localStorage.getItem("arr"))
+				$.each(arr,function(i,ele){
+					var str=`<tr>
+							<td>${ele.brand} ${ele.size} ${ele.pattern} ${ele.ply} ${ele.loading_index} ${ele.loading_index} ${ele.speed_rating} ${ele.tread_depth}</td>
+							<td>$${ele.price}</td>
+							<td>${ele.qty}</td>
+							<td><input type="number" style="width: 50px;" value="${ele.count}" min="0"/ ></td>
+							<td><span class="icon icon-bin"></span></td>
+						</tr>`
+					$("tbody").append(str)
+				})
+				for (var i = 0; i < $(".icon-bin").length; i++) {
+					$(".icon-bin")[i].index=i
+				}
+				$("table").on("click","input[type=number]",function(){
+					for (var i = 0; i < $("input[type=number]").length; i++) {
+						$("input[type=number]")[i].index=i
+					}
+					console.log(this.index)
+					arr[this.index].count=$("input[type=number]").eq(this.index).val()
+					localStorage.setItem("arr",JSON.stringify(arr))
+				})
+				$("body").on("click",".icon-bin",function(){
+					$(this).parent().parent().remove()
+//					console.log(this.index)
+					arr.splice(this.index,1)
+					localStorage.setItem("arr",JSON.stringify(arr))
+					console.log(arr[0].oid)
+				})
+				$(".shopping").on("click",function(){
+					if ($("#user").val()||$("#phone").val()||$("#address").val()||$("#remarks").val()) {
+						$.ajax({
+							type:"post",
+							url:"http://172.16.129.67:8888/luntai/php/index.php?C=Login&M=check_out",
+							async:true,
+							data:{
+								name:$("#user").val(),
+								username:localStorage.getItem("username"),
+								phone:$("#phone").val(),
+								address:$("#address").val(),
+								remarks:$("#remarks").val(),
+								products_id:localStorage.getItem("arr")
+							},
+							dataType:"json",
+							success:function(con){
+								console.log(con)
+								if (con.code==200) {
+									$("#collapseExample").slideDown().find("big").html(con.message)
+								}
+							}
+						});
+					}else{
+						$("#collapseExample").slideDown()
+					}
+					return false;
+				})
+				
+				$(document).click(function(){
+					$("#collapseExample").slideUp()
+				})
+				$(".conShopping").click(function(){
+					location.href="XGouWu.html"
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="logo">
+			<div class="nav">
+				<a href="login.html">LOGO</a>
+				<a href="home.html">HOME</a>
+				<a href="XGouWu.html">PRODUCTS</a>
+				<a href="about.html">ABOUT US</a>
+				<a href="LM110.html">CONTACT</a>
+				<a href="history.html">REGISTER I SING IN</a>
+				<a style="position: absolute;">Log Out</a>
+			</div>
+		</div>
+		<div class="banner">
+			<img src="产品介绍/首页-产品介绍_02.jpg" alt="" />
+		</div>
+		<div class="nav-foot">
+			<p>Your location: Home > <span>Products > LM110</span></p>
+		</div>
+		<div class="con-fluid">
+			<div class="con-article">
+				<p>My shopping cart</p>
+					
+					<div class="bg">
+				<table class="table">
+					<thead>
+						<tr style="background: orange;">
+							<td>Descript</td>
+							<td>Your price Inc GST</td>
+							<td>Stock Qty</td>
+							<td>Add-Qty</td>
+							<td>Qty In Cart</td>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+					
+				</table>
+				<div style="position: fixed;top: 40%;width: 70%;display: none;z-index: 100;" id="collapseExample">
+						<div class="well">
+							<big style="color: orangered;">输入不可为空 !</big>
+						</div>
+					</div>
+			</div>
+				
+				<!--foot-->
+				<div class="con-foot">
+					<p>
+						<span>Order Subtotal</span>
+						<span>Total merchandise</span>
+					</p>
+					<p>
+						<span>Total merchandise</span>
+						<span>$900</span>
+					</p>
+					<p>
+						<span>Freight</span>
+						<span>face</span>
+					</p>
+					<p>
+						<span>Total</span>
+						<span><big>$900</big></span>
+					</p>
+				</div>
+				<h4 style="margin: 0.3rem 0;">Shipping address</h4>
+				<div class="container-fluid fluid">
+					<div class="row">
+						<div class="col-md-6">
+							<input type="text" placeholder="Name" id="user"/>
+							<img src="官网首页切图/Usercopy2.png"/>
+						</div>
+						<div class="col-md-6">
+							<input type="text" placeholder="Phone" id="phone"/>
+							<img src="官网首页切图/iPhonepotrait.png"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<input type="text" placeholder="Address" id="address"/>
+							<img src="官网首页切图/Mail.png"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<textarea placeholder="Remarks ..." id="remarks"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<button type="button" class="btn btn-default conShopping">CONTINUE SHOPPING</button>
+							<button type="button" class="btn btn-danger shopping">Checkout</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<span>SpiderGT Longmarch Type 2017.All Rights Reserved</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		console.log("1rem=" + 1920 / 16)
+		onresize = function() {
+			document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		}
+		
+	</script>
+</html>

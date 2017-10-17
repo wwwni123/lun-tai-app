@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="about.css" />
+		<link rel="stylesheet" type="text/css" href="NEW-API/bootstrap/css/bootstrap.min.css" />
+		<style type="text/css">
+			a:hover{
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="logo">
+			<div class="nav">
+				<a>LOGO</a>
+				<a href="index.html">HOME</a>
+				<a href="XGouWu.html">PRODUCTS</a>
+				<a>ABOUT US</a>
+				<a href="LM110.html">CONTACT</a>
+				<a href="history.html">REGISTER I SING IN</a>
+				<a style="position: absolute;">Log Out</a>
+			</div>
+		</div>
+		<div class="banner">
+			<img src="关于我们/轮胎-关于我们_03.jpg" alt="" />
+		</div>
+		<div class="con-fluid">
+			<div class="con-article">
+				<h4><center>ABOUT US</center></h4>
+				<div class="con">
+					<div class="imgs">
+						<img src="关于我们/轮胎-关于我们_06.jpg" />
+					</div>
+					<p class="p2">
+						Spider GT Pty Lid Was established in 2012 and operates in Melbourne, Victoria specializing in distribu- tion of LONGMARCH Truck and Bus Tyres and Passenger Tyres. In our short time,we have progressed rapidly across Australia.
+					</p>
+					<p class="p2">
+
+						At Spider GY Pty Lid we have unprecedented availability of High Quality Tyres in a range of sizes and patterns to suit your requirements.
+					</p>
+					<p class="p2">
+						At Spider GT Pty Lid we will make every effort to exceed your expectations and work closely with our customers from selecting the right tyres through to our delivery and follow up service.
+					</p>
+
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<span>SpiderGT Longmarch Type 2017.All Rights Reserved</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		console.log("1rem=" + 1920 / 16)
+		onresize = function() {
+			document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		}
+		if (localStorage.getItem("hasuser")) {
+			$(".nav a:nth-child(6)").html("<span class='glyphicon glyphicon-user'></span>")
+		}
+		$(".nav a:last-child").click(function(){
+			localStorage.clear()
+			location.replace("./login.html")
+		})
+	</script>
+
+</html>

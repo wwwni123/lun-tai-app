@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="xingouwu/XGouWu.css"/>
+		<link rel="stylesheet" type="text/css"href="NEW-API/bootstrap/css/bootstrap.min.css"/>	
+		<script src="NEW-API/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="NEW-API/bootstrap/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.oid{
+				display: none;
+			}
+			.act{
+				color: #f5d449 !important;
+				text-decoration: underline;
+			}
+			.acti:hover{
+				color: #f5d449;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="logo">
+			<div class="nav">
+				<a>LOGO</a>
+				<a href="index.html">HOME</a>
+				<a href="XGouWu.html">PRODUCTS</a>
+				<a href="about.html">ABOUT US</a>
+				<a href="LM110.html">CONTACT</a>
+				<a>REGISTER I SING IN</a>
+				<a style="position: absolute;">Log Out</a>
+			</div>
+		</div>
+		<div class="cont">
+			
+			<div class="clear"></div>	
+			
+			<div class="bg">
+				
+			</div>
+		</div>	
+		
+		<div class="foot">
+			&copy;SpiderGT Longmarch Tyre &copy;2017.All Rights Reserved
+		</div>
+	</body>
+	<script>
+		document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		console.log("1rem=" + 681 / 16)
+		onresize = function() {
+			document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		}
+		if (localStorage.getItem("hasuser")) {
+			$(".nav a:nth-child(6)").html("<span class='glyphicon glyphicon-user'></span>")
+		}
+		$(".nav a:last-child").click(function(){
+			localStorage.clear()
+			location.replace("./login.html")
+		})
+		$.ajax({
+			type:"post",
+			url:"http://172.16.129.67:8888/luntai/php/index.php?C=Login&M=find_order",
+			async:true,
+			data:{
+				username:localStorage.getItem("username")
+			},
+			dataType:"json",
+			success:function(con){
+				console.log(con)
+				if (con.code==200) {
+					var data=con.data
+					var innerdata=""
+					var str1=``
+					var str=``
+					$.each(data,function(i,ele){
+						innerdata=$.parseJSON(data[i].products_id)
+						
+						str1=`<div style="width: 100%;margin:1rem auto 0;height: 0.5rem;line-height: 0.5rem;border-bottom: 0.03rem solid darkgrey;">
+									<h4>Account History</h4>
+								</div>
+								<ul class="oUl">
+									<li><span>Name</span><big>${ele.name}</big></li>
+									<li><span>Phone code</span><big>${ele.phone}</big></li>
+									<li><span>Address</span><big>${ele.address+ele.remarks}</big></li>
+								</ul>`
+							str=`<div style="width: 100%;margin: auto;height: 0.5rem;line-height: 0.5rem;border-bottom: 0.03rem solid darkgrey;">
+									<h4>Account History</h4>
+								</div><table class="table">
+								<thead>
+									<tr class="tiao">
+										<td>Date</td>
+										<td>Order Number</td>
+										<td>Description</td>
+										<td>Total commodity</td>
+										<td>Discount proce</td>
+										<td> </td>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+									</table>`
+									$(".bg").append(str1)
+									$(".bg").append(str)
+						$.each(innerdata, function(a,eq) {
+							console.log(eq)
+							var str2=`<tr>
+										<td>${ele.time}</td>
+										<td>${ele.shop_id}</td>
+										<td>${eq.brand} ${eq.size} ${eq.pattern} ${eq.ply} ${eq.loading_index} ${eq.loading_index} ${eq.speed_rating} ${eq.tread_depth}</td>
+										<td>${eq.count}</td>
+										<td>${eq.price}</td>
+										<td class="glyphicon glyphicon-menu-down"></td>
+									</tr>`
+							$("tbody").eq(i).append(str2)
+						});
+					})
+				}
+			}
+		});
+	</script>
+</html>

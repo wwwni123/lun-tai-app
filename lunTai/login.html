@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>Title</title>
+		<link rel="stylesheet" type="text/css" href="login.css" />
+		<link rel="stylesheet" type="text/css" href="NEW-API/bootstrap/css/bootstrap.min.css" />
+		<script src="NEW-API/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		console.log("1rem=" + 1920 / 16)
+		onresize = function() {
+			document.documentElement.style.fontSize = innerWidth / 16 + "px";
+		}
+	</script>
+	<body>
+		<div class="logo">
+			LOGO
+		</div>
+		<div class="content">
+			<p><img src="登录/PxCook.png" /></p>
+			<div class="form">
+				<p>Login Into Your Account</p>
+				<p><input type="text" placeholder="User Name" class="user" /><img src="登录/name.png" /></p>
+				<p><input type="password" placeholder="Password" class="pass" /><img src="登录/pass.png" /></p>
+				<p><button style="width: 2.51rem;" class="btn">SignIn</button>
+					<div style="display: none;" id="collapseExample">
+						<div class="well">
+							<big style="color: orangered;">输入不可为空 !</big>
+						</div>
+					</div>
+				</p>
+				<p><input type="checkbox" /> Remember Me</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		var ex=/^[1][0-9]{10}$/
+		var emil=/^\w+\@\w+\.\w+$/
+		var pass=/^\w{3,}$/
+		$(document).on("click",function(){
+			$("#collapseExample").slideUp()
+		})
+		$(".btn").on("click", function() {
+			if(!(!ex.test($(".user").val())|| !emil.test($(".user").val())) || pass.test($(".pass").val())==false) {
+				$("#collapseExample").slideDown()
+				$(".well big").html("请认真填写 !")
+				$(".user").val("")
+				$(".pass").val("")
+			} else {
+				$.ajax({
+					type: "post",
+					url: "http://47.92.37.168/luntai/php/index.php?C=Login&M=login",
+					async: true,
+					data: {
+						username: $(".user").val(),
+						password: $(".pass").val()
+					},
+					success: function(con) {
+						var data = $.parseJSON(con)
+						console.log(data)
+
+						if(data.code == 200) {
+							localStorage.setItem("hasuser","yes")
+							$("#collapseExample").slideDown()
+							$(".well big").html(data.message)
+							setTimeout(function(){
+								localStorage.setItem("username",$(".user").val())
+								window.location.replace("../index.html")
+							},1000)
+						} else {
+							$("#collapseExample").slideDown()
+							$(".well big").html(data.message)
+							$(".user").val("")
+							$(".pass").val("")
+							$(".confirm").val("")
+						}
+					}
+				});
+			}
+			return false;
+		})
+	</script>
+
+</html>
